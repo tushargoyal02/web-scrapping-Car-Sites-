@@ -30,23 +30,15 @@ soup= BeautifulSoup(response.text,"html.parser")
 
 # In[7]:
 
-
-for carname in soup.find_all("h1"):
-    car=carname.text
-    print(car)
-    #print(type(car))
-    brand=car.split(" ")
-    
-    brandName=str(brand[0])
-    print(brandName)
-    
-    variant = ' '.join(brand[1:])
-    print(variant)
-    #print(type(variant))
-
-
-# In[8]:
-
+for img_div in soup.find_all("div",{"class":"s-item-container"}):
+	for img_div2 in img_div.find_all("div",{"class":"a-fixed-left-grid"}):
+		for img_div3 in img_div2.find_all("div",{"class":"a-fixed-left-grid-inner"}):
+			for img_div4 in img_div3.find_all("div",{"class":"a-fixed-left-grid-col a-col-left"}):
+				for img_div5 in img_div4.find_all("div",{"class":"a-row"}):
+					for img_div6 in img_div5.find_all("div",{"class":"a-column a-span12 a-text-center"}):
+						for img_id in img_div6.find_all("img",{"class":"s-access-image cfMarker"}):
+							img1[i]=(img_id.get("src"))		
+							i=i+1
 
 # this is for price
 price1=[]
